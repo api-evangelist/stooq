@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "stooq": "https://stooq.com/vocab#",
+    "ohlcv": "https://stooq.com/vocab#OHLCVRecord",
+    "openDate": "stooq:openDate",
+    "openPrice": "stooq:openPrice",
+    "highPrice": "stooq:highPrice",
+    "lowPrice": "stooq:lowPrice",
+    "closePrice": "stooq:closePrice",
+    "volume": "stooq:volume",
+    "tickerSymbol": "https://schema.org/tickerSymbol",
+    "interval": "stooq:interval"
+  },
+  "@type": "WebAPI",
+  "@id": "https://stooq.com/",
+  "name": "Stooq Historical Data API",
+  "description": "Free financial data platform delivering historical OHLCV time-series for global equities, indices, currencies, cryptocurrencies, commodities, and bonds via a CSV REST interface.",
+  "url": "https://stooq.com/",
+  "provider": {
+    "@type": "Organization",
+    "name": "Stooq",
+    "url": "https://stooq.com/",
+    "foundingLocation": {
+      "@type": "Place",
+      "addressCountry": "PL",
+      "name": "Poland"
+    }
+  },
+  "documentation": "https://stooq.com/db/h/",
+  "termsOfService": "https://stooq.com/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free access via API key obtained from the Stooq website"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://stooq.com/q/d/l/?s={ticker}&d1={startDate}&d2={endDate}&i={interval}&apikey={apikey}",
+      "httpMethod": "GET",
+      "contentType": "text/csv",
+      "description": "Download OHLCV historical data as CSV for the specified ticker, date range, and interval"
+    },
+    "query-input": [
+      "required name=ticker",
+      "required name=apikey",
+      "optional name=startDate",
+      "optional name=endDate",
+      "optional name=interval"
+    ]
+  },
+  "featureList": [
+    "21,000+ global equity and ETF tickers",
+    "1,980+ currency pairs",
+    "130+ cryptocurrencies",
+    "Global indices and commodities",
+    "30+ years of daily history for major instruments",
+    "Hourly and 5-minute intraday data",
+    "Bulk ZIP/CSV database snapshots",
+    "Free API with daily quota"
+  ],
+  "encodingFormat": "text/csv",
+  "inLanguage": "en",
+  "keywords": [
+    "stock market data",
+    "historical prices",
+    "OHLCV",
+    "financial data",
+    "market data",
+    "equities",
+    "indices",
+    "currencies",
+    "cryptocurrency",
+    "commodities",
+    "time series"
+  ]
+}

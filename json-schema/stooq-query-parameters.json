@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stooq.com/schemas/query-parameters",
+  "title": "Stooq Historical Data API Query Parameters",
+  "description": "Query parameters accepted by the Stooq Historical Data API endpoint at https://stooq.com/q/d/l/",
+  "type": "object",
+  "required": ["s", "apikey"],
+  "properties": {
+    "s": {
+      "type": "string",
+      "description": "Ticker symbol with optional exchange suffix. Covers equities (.US, .UK, .DE, .JP, .HK, .HU), currencies (e.g. gbp.v, eur.v), cryptocurrencies (e.g. btc.v), indices (e.g. spx), commodities (e.g. oil, gold), and bonds.",
+      "examples": ["aapl.us", "googl.us", "msft.us", "btc.v", "gbp.v", "spx", "oil", "gold"]
+    },
+    "d1": {
+      "type": "string",
+      "pattern": "^\\d{8}$",
+      "description": "Start date of the data range in YYYYMMDD format. If omitted, the API returns all available history up to d2.",
+      "examples": ["20200101", "19900101"]
+    },
+    "d2": {
+      "type": "string",
+      "pattern": "^\\d{8}$",
+      "description": "End date of the data range in YYYYMMDD format. If omitted, defaults to the most recent available date.",
+      "examples": ["20231231", "20260613"]
+    },
+    "i": {
+      "type": "string",
+      "enum": ["d", "w", "m", "q", "y", "60", "5"],
+      "default": "d",
+      "description": "Data interval. d=daily, w=weekly, m=monthly, q=quarterly, y=yearly, 60=hourly (~9 months history), 5=5-minute (~1 month history)."
+    },
+    "apikey": {
+      "type": "string",
+      "description": "API key obtained from the Stooq website via a CAPTCHA-gated registration form. Required as of early 2026.",
+      "examples": ["your_api_key_here"]
+    }
+  },
+  "additionalProperties": false
+}

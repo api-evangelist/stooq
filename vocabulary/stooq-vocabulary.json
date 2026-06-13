@@ -1,0 +1,62 @@
+{
+  "title": "Stooq Financial Data API Vocabulary",
+  "description": "Domain terms and abbreviations used in the Stooq Historical Data API.",
+  "terms": [
+    {
+      "term": "OHLCV",
+      "definition": "Open, High, Low, Close, Volume — the five standard fields in a price bar. Open is the first trade price in the period, High is the maximum price, Low is the minimum price, Close is the last trade price, and Volume is the number of units traded."
+    },
+    {
+      "term": "Ticker Symbol",
+      "definition": "An abbreviated code identifying a financial instrument on an exchange. On Stooq, tickers are optionally suffixed with a dot and exchange code (e.g. aapl.us for Apple on US exchanges)."
+    },
+    {
+      "term": "Exchange Suffix",
+      "definition": "A dot-separated suffix appended to a ticker symbol to identify the exchange. Supported suffixes include .US (United States), .UK (United Kingdom), .DE (Germany/XETRA), .JP (Japan), .HK (Hong Kong), .HU (Hungary), .V (virtual/composite, used for FX and crypto)."
+    },
+    {
+      "term": "Interval",
+      "definition": "The time granularity of each row in the returned CSV. Supported values: d (daily), w (weekly), m (monthly), q (quarterly), y (yearly), 60 (hourly), 5 (5-minute)."
+    },
+    {
+      "term": "d1",
+      "definition": "Start date parameter for the Stooq API query, formatted as YYYYMMDD (e.g. 20200101 for January 1 2020)."
+    },
+    {
+      "term": "d2",
+      "definition": "End date parameter for the Stooq API query, formatted as YYYYMMDD (e.g. 20231231 for December 31 2023)."
+    },
+    {
+      "term": "s",
+      "definition": "The ticker symbol query parameter. Required for every Stooq API request."
+    },
+    {
+      "term": "i",
+      "definition": "The interval query parameter controlling data frequency (d, w, m, q, y, 60, 5)."
+    },
+    {
+      "term": "apikey",
+      "definition": "Authentication token required by the Stooq API, obtained from the Stooq website via a CAPTCHA-gated form."
+    },
+    {
+      "term": "Daily Hits Limit",
+      "definition": "A quota on the number of API requests allowed per day per API key. When exceeded, the API returns the message 'Exceeded the daily hits limit' in the response body instead of CSV data."
+    },
+    {
+      "term": "Bulk Snapshot",
+      "definition": "A ZIP-compressed archive of CSV files covering the full Stooq database (12,000+ securities) at a point in time. Available for download at https://stooq.com/db/h/."
+    },
+    {
+      "term": "Intraday Data",
+      "definition": "Sub-daily price data. Stooq provides hourly bars (~9 months of history) and 5-minute bars (~1 month of history) via the i=60 and i=5 interval parameters."
+    },
+    {
+      "term": "Security",
+      "definition": "A tradable financial instrument tracked by Stooq. Includes equities (stocks, ETFs), indices, currencies (FX pairs), cryptocurrencies, commodities, bonds, and economic indicators."
+    },
+    {
+      "term": "FX Pair",
+      "definition": "A foreign exchange rate between two currencies. On Stooq, FX pairs use the .v suffix (e.g. gbp.v for GBP/USD, eur.v for EUR/USD)."
+    }
+  ]
+}

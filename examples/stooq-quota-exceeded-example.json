@@ -1,0 +1,13 @@
+{
+  "description": "Example: Response when the daily API request quota has been exceeded.",
+  "request": {
+    "method": "GET",
+    "url": "https://stooq.com/q/d/l/?s=aapl.us&i=d&apikey=your_api_key_here"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/html",
+    "body": "Exceeded the daily hits limit"
+  },
+  "notes": "Stooq returns HTTP 200 even when the quota is exceeded. The body contains the plain-text error message 'Exceeded the daily hits limit'. Callers must check response body content rather than relying on HTTP status codes to detect quota exhaustion."
+}

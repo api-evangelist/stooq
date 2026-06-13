@@ -1,0 +1,13 @@
+{
+  "description": "Example: Fetch weekly OHLCV data for Bitcoin (BTC/USD) for Q4 2023.",
+  "request": {
+    "method": "GET",
+    "url": "https://stooq.com/q/d/l/?s=btc.v&d1=20231001&d2=20231231&i=w&apikey=your_api_key_here"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/csv",
+    "body": "Date,Open,High,Low,Close,Volume\n2023-12-29,42258.32,44694.17,41950.10,42265.00,0\n2023-12-22,43738.07,44490.00,40563.77,42258.32,0\n2023-12-15,41468.69,43928.00,40533.00,43738.07,0\n2023-12-08,43761.00,44491.45,40527.10,41468.69,0\n"
+  },
+  "notes": "Cryptocurrency data uses the .v suffix. Volume is often 0 for crypto pairs on Stooq. Weekly intervals aggregate from Monday to Friday."
+}

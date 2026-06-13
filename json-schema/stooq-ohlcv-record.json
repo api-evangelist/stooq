@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stooq.com/schemas/ohlcv-record",
+  "title": "Stooq OHLCV Record",
+  "description": "A single OHLCV (Open, High, Low, Close, Volume) data point returned by the Stooq Historical Data API for a given ticker symbol and date.",
+  "type": "object",
+  "required": ["Date", "Open", "High", "Low", "Close"],
+  "properties": {
+    "Date": {
+      "type": "string",
+      "description": "The trading date for this data point. Format is YYYY-MM-DD for daily, weekly, monthly, quarterly, and yearly intervals. For intraday intervals, includes time component.",
+      "examples": ["2023-12-29", "2023-12-27"]
+    },
+    "Open": {
+      "type": "number",
+      "description": "The opening price of the security for the given period.",
+      "examples": [192.9, 194.14]
+    },
+    "High": {
+      "type": "number",
+      "description": "The highest price reached during the given period.",
+      "examples": [193.15, 194.66]
+    },
+    "Low": {
+      "type": "number",
+      "description": "The lowest price reached during the given period.",
+      "examples": [191.72, 193.17]
+    },
+    "Close": {
+      "type": "number",
+      "description": "The closing price of the security for the given period.",
+      "examples": [192.53, 193.58]
+    },
+    "Volume": {
+      "type": "integer",
+      "description": "The number of shares or contracts traded during the given period. May be zero or absent for indices, currencies, and some instruments.",
+      "examples": [42628800, 34049900]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,13 @@
+{
+  "description": "Example: Fetch daily OHLCV data for Apple Inc (AAPL) on US exchange for the last week of December 2023.",
+  "request": {
+    "method": "GET",
+    "url": "https://stooq.com/q/d/l/?s=aapl.us&d1=20231225&d2=20231229&i=d&apikey=your_api_key_here"
+  },
+  "response": {
+    "status": 200,
+    "contentType": "text/csv",
+    "body": "Date,Open,High,Low,Close,Volume\n2023-12-29,192.90,193.15,191.72,192.53,42628800\n2023-12-28,194.14,194.66,193.17,193.58,34049900\n2023-12-27,192.49,193.50,191.09,193.15,48087700\n2023-12-26,193.61,193.89,192.83,193.05,28919300\n"
+  },
+  "notes": "Daily interval (i=d) returns rows newest-first. Date is YYYY-MM-DD. Volume is share count."
+}

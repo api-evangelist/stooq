@@ -51,6 +51,22 @@ apis:
     properties:
       - type: Documentation
         url: https://stooq.com/db/h/
+      - type: OpenAPI
+        url: openapi/stooq-historical-data-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/stooq-ohlcv-record.json
+      - type: JSONSchema
+        url: json-schema/stooq-query-parameters.json
+      - type: Example
+        url: examples/stooq-apple-daily-ohlcv-example.json
+      - type: Example
+        url: examples/stooq-bitcoin-weekly-ohlcv-example.json
+      - type: Example
+        url: examples/stooq-quota-exceeded-example.json
+      - type: Vocabulary
+        url: vocabulary/stooq-vocabulary.json
+      - type: JSONLD
+        url: json-ld/stooq-jsonld.json
       - type: Plans
         url: plans/stooq-plans-pricing.yml
       - type: RateLimits
