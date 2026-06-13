@@ -1,0 +1,54 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Stooq
+providerId: stooq
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Fintech
+  - Market Data
+  - Rate Limiting
+description: >-
+  Stooq enforces a daily request quota per API key. The exact numeric limit is not publicly
+  documented. When the quota is breached the API returns a plain-text or HTML error page with
+  the message "Exceeded the daily hits limit" instead of CSV data; it does not return HTTP 429.
+  Community reports indicate the quota is relatively low, so callers should implement request
+  pacing, caching, and respect the daily cap. No per-minute burst limit is formally published.
+sources:
+  - https://stooq.com/db/h/
+  - https://www.fundmanagersoftware.com/forum/viewtopic.php?f=7&t=6084
+  - https://github.com/pydata/pandas-datareader/issues/1012
+responseCodes:
+  throttled: 200
+  notes: >-
+    Throttled responses return HTTP 200 with an error message body; clients must inspect the
+    response body for the "Exceeded the daily hits limit" string rather than relying on the
+    HTTP status code.
+limits:
+  - name: Free daily quota
+    scope: api_key
+    metric: requests_per_day
+    limit: -1
+    notes: Exact limit undisclosed; empirically reported as low. Error returned when exceeded.
+policies:
+  - name: Quota Error Detection
+    description: >-
+      Check response body for the string "Exceeded the daily hits limit". The HTTP status code
+      will be 200, making standard rate-limit detection unreliable.
+  - name: Request Pacing
+    description: >-
+      Space requests with a pause of at least 0.1 seconds between calls. pandas-datareader
+      uses this default. For bulk retrieval, consider larger pauses to stay within the daily cap.
+  - name: Caching
+    description: >-
+      Cache previously downloaded CSV data locally to avoid re-fetching the same date ranges,
+      reducing quota consumption.
+  - name: API Key Requirement
+    description: >-
+      As of early 2026 all /q/d/l/ requests must include an apikey query parameter. Obtain a
+      key at https://stooq.com/q/d/?s=spy.us&get_apikey via an on-site CAPTCHA flow.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

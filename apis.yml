@@ -1,0 +1,87 @@
+aid: stooq
+url: https://raw.githubusercontent.com/api-evangelist/stooq/refs/heads/main/apis.yml
+name: Stooq
+kind: company
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Fintech
+  - Market Data
+  - Stocks
+  - Indices
+  - Currencies
+  - Crypto
+  - Commodities
+  - Historical Data
+  - Free
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+description: >-
+  Stooq is a Poland-based financial data platform offering free access to historical and current
+  market data for global equities, indices, currencies, cryptocurrencies, commodities, bonds, and
+  economic indicators. Data is delivered as CSV via a simple REST-style URL interface at
+  https://stooq.com/q/d/l/ using query parameters for ticker symbol, date range, and interval.
+  As of early 2026 an API key (obtained via CAPTCHA on the site) is required. A known daily
+  request quota applies; exceeding it returns an "Exceeded the daily hits limit" message.
+  Bulk point-in-time snapshots of the full database (12,000+ securities) are also available
+  as ZIP-compressed CSVs from https://stooq.com/db/h/.
+apis:
+  - aid: stooq:historical-data-api
+    name: Stooq Historical Data API
+    tags:
+      - Stocks
+      - Indices
+      - Currencies
+      - Crypto
+      - Commodities
+      - OHLCV
+      - Historical Data
+      - CSV
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://stooq.com/q/d/l/
+    humanURL: https://stooq.com/db/h/
+    description: >-
+      CSV-based REST endpoint returning OHLCV (Open, High, Low, Close, Volume) time series for a
+      given ticker. Accepts query parameters: s (ticker symbol with optional exchange suffix such as
+      .US, .UK, .DE, .JP, .HK, .HU), d1 (start date YYYYMMDD), d2 (end date YYYYMMDD), i (interval:
+      d=daily, w=weekly, m=monthly, q=quarterly, y=yearly), and apikey. Covers 21,000+ global
+      securities and ETFs, 1,980+ currency pairs, 130+ cryptocurrencies, global indices, commodities,
+      and economic indicators. Daily history extends 30+ years for major instruments; hourly data
+      spans ~9 months; 5-minute data ~1 month.
+    properties:
+      - type: Documentation
+        url: https://stooq.com/db/h/
+      - type: Plans
+        url: plans/stooq-plans-pricing.yml
+      - type: RateLimits
+        url: rate-limits/stooq-rate-limits.yml
+      - type: FinOps
+        url: finops/stooq-finops.yml
+    x-features:
+      - OHLCV CSV download for 21,000+ global securities
+      - Multiple intervals - daily, weekly, monthly, quarterly, yearly
+      - Hourly (9 months) and 5-minute (1 month) intraday data
+      - Exchange-suffixed ticker convention (.US, .UK, .DE, .JP, .HK)
+      - Bulk ZIP/CSV database snapshots at stooq.com/db/h/
+      - Currencies, crypto, commodities, bonds, economic indicators
+      - Free access via API key obtained on-site
+    x-use-cases:
+      - Download 30+ years of daily OHLCV data for backtesting strategies
+      - Bulk-ingest cross-sectional snapshots for quantitative research
+      - Source free historical FX and crypto price series
+common:
+  - type: Portal
+    url: https://stooq.com/
+  - type: Documentation
+    url: https://stooq.com/db/h/
+  - type: BulkData
+    url: https://stooq.com/db/h/
+  - type: Plans
+    url: plans/stooq-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/stooq-rate-limits.yml
+  - type: FinOps
+    url: finops/stooq-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

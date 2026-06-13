@@ -1,0 +1,75 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Stooq
+providerId: stooq
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Fintech
+  - Market Data
+  - FinOps
+  - FOCUS
+description: >-
+  FinOps view of Stooq. The service is entirely free with no published paid tiers, so direct
+  monetary cost is zero. The primary operational cost is engineering time spent managing the
+  undisclosed daily request quota, implementing CAPTCHA-based API key renewal, and caching
+  downloaded CSV data to stay within limits. Bulk database snapshots require manual download
+  behind a CAPTCHA, adding operational overhead. No SLA or uptime commitment is published.
+sources:
+  - https://stooq.com/db/h/
+  - https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Stooq
+serviceCategory: Fintech
+billingModel:
+  pricingCategory: Free
+  billingFrequency: None
+  billingCurrency: USD
+  chargeCategories:
+    - None
+focusColumns:
+  ServiceName: Stooq Historical Data API
+  ServiceCategory: Fintech
+  ProviderName: Stooq
+  PublisherName: Stooq
+  InvoiceIssuerName: Stooq
+  BillingCurrency: USD
+  ChargeCategory: None
+meters:
+  - name: requests
+    description: HTTP GET requests to /q/d/l/ counted against undisclosed daily quota.
+    unit: request
+    aggregation: count
+    dimensions:
+      - api_key
+      - symbol
+principles:
+  - name: Visibility
+    description: >-
+      Log all outbound Stooq requests with symbol, timestamp, and response status. Track daily
+      request count against the undisclosed quota to detect quota exhaustion before it occurs.
+  - name: Allocation
+    description: >-
+      Assign API keys to specific workloads or teams. Each key has its own daily quota so
+      separate keys per consuming service prevent cross-contamination of quota.
+  - name: Optimization
+    description: >-
+      Cache all downloaded CSV data locally with a content-addressed store keyed by symbol,
+      interval, and date range. Only fetch uncached date ranges to minimize daily request count.
+      Schedule bulk database ZIP downloads from stooq.com/db/h/ to replace many individual
+      calls for large backtests.
+  - name: Accountability
+    description: >-
+      No monetary cost to track. Accountability centres on quota stewardship: assign a quota
+      owner per API key, review daily hit counts in logs, and document CAPTCHA key renewal
+      procedures so that rotation does not cause production outages.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

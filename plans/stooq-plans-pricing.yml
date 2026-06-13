@@ -1,0 +1,64 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Stooq
+providerId: stooq
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Fintech
+  - Market Data
+  - Plans
+description: >-
+  Stooq provides free access to historical market data with no published paid tiers. Users must
+  obtain an API key via an on-site CAPTCHA process at https://stooq.com/q/d/?s=spy.us&get_apikey.
+  A daily request quota is enforced; requests exceeding it receive an "Exceeded the daily hits
+  limit" error. The exact quota is not publicly documented. Bulk ZIP/CSV database snapshots
+  require a manual CAPTCHA-gated download from https://stooq.com/db/h/.
+sources:
+  - https://stooq.com/db/h/
+  - https://stooq.com/db/
+  - https://www.quantstart.com/articles/an-introduction-to-stooq-pricing-data/
+plans:
+  - id: stooq-free
+    name: Free
+    type: freemium
+    description: >-
+      Free access to all historical OHLCV data and bulk downloads. An API key obtained via
+      on-site CAPTCHA is required (as of early 2026). Daily request quota is enforced but the
+      exact limit is undisclosed; exceeding it returns an error message rather than HTTP 429.
+    entries:
+      - label: Daily quota
+        name: free_daily
+        type: quota
+        metric: request
+        limit: -1
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+        notes: Exact limit undisclosed; "Exceeded the daily hits limit" error returned when breached.
+      - label: API key
+        name: free_apikey
+        type: feature
+        metric: key
+        limit: 1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+        notes: Obtained via on-site CAPTCHA at stooq.com/q/d/?s=spy.us&get_apikey
+    elements:
+      - name: Historical OHLCV time series (daily/weekly/monthly/quarterly/yearly)
+      - name: Intraday data (hourly ~9 months, 5-minute ~1 month)
+      - name: 21,000+ global securities, ETFs, indices
+      - name: 1,980+ currency pairs
+      - name: 130+ cryptocurrencies
+      - name: Commodities, bonds, economic indicators
+      - name: Bulk ZIP/CSV database snapshots
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
