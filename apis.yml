@@ -57,11 +57,11 @@ apis:
         url: json-schema/stooq-ohlcv-record.json
       - type: JSONSchema
         url: json-schema/stooq-query-parameters.json
-      - type: Example
+      - type: Examples
         url: examples/stooq-apple-daily-ohlcv-example.json
-      - type: Example
+      - type: Examples
         url: examples/stooq-bitcoin-weekly-ohlcv-example.json
-      - type: Example
+      - type: Examples
         url: examples/stooq-quota-exceeded-example.json
       - type: Vocabulary
         url: vocabulary/stooq-vocabulary.json
