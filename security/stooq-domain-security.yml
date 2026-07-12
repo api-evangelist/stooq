@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: stooq.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 30 23:59:59 2026 GMT
+  hsts: false
+domains:
+- domain: stooq.com
+  dnssec: false
+  caa:
+  - 0 issue "sectigo.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

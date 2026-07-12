@@ -86,6 +86,8 @@ apis:
       - Bulk-ingest cross-sectional snapshots for quantitative research
       - Source free historical FX and crypto price series
 common:
+  - type: DomainSecurity
+    url: security/stooq-domain-security.yml
   - type: Portal
     url: https://stooq.com/
   - type: Documentation
