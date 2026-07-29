@@ -1,0 +1,38 @@
+# Kin Score artifact — stooq — 2026-07-27T190208
+# The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
+---
+kin_score:
+  slug: stooq
+  schema_version: 0.5
+  scored_at: '2026-07-27'
+  run_ts: 2026-07-27T190208
+  composite: 41.3
+  band: thin
+  facets:
+    discoverability: 92.5
+    contract_quality: 64.6
+    governance: 73.7
+    operational_transparency: 21.1
+    developer_ergonomics: 17.4
+    commercial_clarity: 28.9
+  agent_readiness:
+    score: 38.5
+    band: agent-aware
+    dimensions:
+      spec_presence: true
+      agentic_access: true
+      mcp_server: false
+      auth_clarity: false
+      idempotency: false
+      error_semantics: false
+      openapi_examples: false
+      rate_limit_signal: true
+      asyncapi_events: false
+      agent_skills: false
+      well_known_catalog: false
+      consent_identity: false
+  regulatory:
+    applies: true
+    regime: Securities & Market Data
+    regime_id: securities_market_data
+    score: 13.0
