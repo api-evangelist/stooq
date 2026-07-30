@@ -2,7 +2,19 @@ aid: stooq
 url: https://raw.githubusercontent.com/api-evangelist/stooq/refs/heads/main/apis.yml
 name: Stooq
 kind: company
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/stooq.png
 tags:
   - Fintech
   - Market Data
@@ -26,65 +38,38 @@ description: >-
   Bulk point-in-time snapshots of the full database (12,000+ securities) are also available
   as ZIP-compressed CSVs from https://stooq.com/db/h/.
 apis:
-  - aid: stooq:historical-data-api
-    name: Stooq Historical Data API
-    tags:
-      - Stocks
-      - Indices
-      - Currencies
-      - Crypto
-      - Commodities
-      - OHLCV
-      - Historical Data
-      - CSV
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://stooq.com/q/d/l/
-    humanURL: https://stooq.com/db/h/
-    description: >-
-      CSV-based REST endpoint returning OHLCV (Open, High, Low, Close, Volume) time series for a
-      given ticker. Accepts query parameters: s (ticker symbol with optional exchange suffix such as
-      .US, .UK, .DE, .JP, .HK, .HU), d1 (start date YYYYMMDD), d2 (end date YYYYMMDD), i (interval:
-      d=daily, w=weekly, m=monthly, q=quarterly, y=yearly), and apikey. Covers 21,000+ global
-      securities and ETFs, 1,980+ currency pairs, 130+ cryptocurrencies, global indices, commodities,
-      and economic indicators. Daily history extends 30+ years for major instruments; hourly data
-      spans ~9 months; 5-minute data ~1 month.
-    properties:
-      - type: Documentation
-        url: https://stooq.com/db/h/
-      - type: OpenAPI
-        url: openapi/stooq-historical-data-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/stooq-ohlcv-record.json
-      - type: JSONSchema
-        url: json-schema/stooq-query-parameters.json
-      - type: Examples
-        url: examples/stooq-apple-daily-ohlcv-example.json
-      - type: Examples
-        url: examples/stooq-bitcoin-weekly-ohlcv-example.json
-      - type: Examples
-        url: examples/stooq-quota-exceeded-example.json
-      - type: Vocabulary
-        url: vocabulary/stooq-vocabulary.json
-      - type: JSONLD
-        url: json-ld/stooq-jsonld.json
-      - type: Plans
-        url: plans/stooq-plans-pricing.yml
-      - type: RateLimits
-        url: rate-limits/stooq-rate-limits.yml
-      - type: FinOps
-        url: finops/stooq-finops.yml
-    x-features:
-      - OHLCV CSV download for 21,000+ global securities
-      - Multiple intervals - daily, weekly, monthly, quarterly, yearly
-      - Hourly (9 months) and 5-minute (1 month) intraday data
-      - Exchange-suffixed ticker convention (.US, .UK, .DE, .JP, .HK)
-      - Bulk ZIP/CSV database snapshots at stooq.com/db/h/
-      - Currencies, crypto, commodities, bonds, economic indicators
-      - Free access via API key obtained on-site
-    x-use-cases:
-      - Download 30+ years of daily OHLCV data for backtesting strategies
-      - Bulk-ingest cross-sectional snapshots for quantitative research
-      - Source free historical FX and crypto price series
+- aid: stooq:stooq-q-api
+  name: Stooq Q API
+  description: The Q API from Stooq — 1 operation(s) for q.
+  humanURL: https://stooq.com/db/h/
+  baseURL: https://stooq.com/q/d/l/
+  tags:
+  - Q
+  properties:
+  - type: OpenAPI
+    url: openapi/stooq-q-api-openapi.yml
+  - type: Documentation
+    url: https://stooq.com/db/h/
+  - type: JSONSchema
+    url: json-schema/stooq-ohlcv-record.json
+  - type: JSONSchema
+    url: json-schema/stooq-query-parameters.json
+  - type: Examples
+    url: examples/stooq-apple-daily-ohlcv-example.json
+  - type: Examples
+    url: examples/stooq-bitcoin-weekly-ohlcv-example.json
+  - type: Examples
+    url: examples/stooq-quota-exceeded-example.json
+  - type: Vocabulary
+    url: vocabulary/stooq-vocabulary.json
+  - type: JSONLD
+    url: json-ld/stooq-jsonld.json
+  - type: Plans
+    url: plans/stooq-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/stooq-rate-limits.yml
+  - type: FinOps
+    url: finops/stooq-finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/stooq-agentic-access.yml
