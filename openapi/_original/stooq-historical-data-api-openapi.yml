@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Stooq Historical Data API
+  version: 1.0.0
+  description: >-
+    Stooq is a Poland-based financial data platform offering free access to historical
+    and current market data for global equities, indices, currencies, cryptocurrencies,
+    commodities, bonds, and economic indicators. Data is delivered as CSV via a simple
+    REST-style URL interface. An API key (obtained via CAPTCHA on the site) is required.
+    A known daily request quota applies; exceeding it returns an
+    "Exceeded the daily hits limit" message.
+  contact:
+    url: https://stooq.com/
+  license:
+    name: Free (non-commercial use)
+    url: https://stooq.com/
+servers:
+  - url: https://stooq.com
+    description: Stooq production server
+paths:
+  /q/d/l/:
+    get:
+      operationId: getHistoricalData
+      summary: Download historical OHLCV data as CSV
+      description: >-
+        Returns a CSV file containing OHLCV (Open, High, Low, Close, Volume) time-series
+        data for the specified ticker symbol and date range. Covers 21,000+ global
+        securities and ETFs, 1,980+ currency pairs, 130+ cryptocurrencies, global indices,
+        commodities, and economic indicators. Daily history extends 30+ years for major
+        instruments; hourly data spans ~9 months; 5-minute data ~1 month.
+      parameters:
+        - name: s
+          in: query
+          required: true
+          description: >-
+            Ticker symbol, optionally suffixed with an exchange code.
+            Examples: aapl.us (Apple US), googl.us, btc.v (Bitcoin),
+            gbp.v (GBP/USD), oil (crude oil), spx (S&P 500).
+            Exchange suffixes: .US, .UK, .DE, .JP, .HK, .HU, .V
+          schema:
+            type: string
+            example: aapl.us
+        - name: d1
+          in: query
+          required: false
+          description: Start date for the data range in YYYYMMDD format.
+          schema:
+            type: string
+            pattern: '^\d{8}$'
+            example: '20200101'
+        - name: d2
+          in: query
+          required: false
+          description: End date for the data range in YYYYMMDD format.
+          schema:
+            type: string
+            pattern: '^\d{8}$'
+            example: '20231231'
+        - name: i
+          in: query
+          required: false
+          description: >-
+            Data interval. Options: d (daily), w (weekly), m (monthly),
+            q (quarterly), y (yearly). Intraday intervals also supported:
+            60 (hourly, ~9 months history), 5 (5-minute, ~1 month history).
+          schema:
+            type: string
+            enum:
+              - d
+              - w
+              - m
+              - q
+              - y
+              - '60'
+              - '5'
+            default: d
+        - name: apikey
+          in: query
+          required: true
+          description: >-
+            API key obtained from the Stooq website via a CAPTCHA form.
+            Required as of early 2026.
+          schema:
+            type: string
+            example: your_api_key_here
+      responses:
+        '200':
+          description: >-
+            CSV file with OHLCV data. The response Content-Type is text/csv.
+            The first row is a header line. If the daily quota is exceeded,
+            the body contains the text "Exceeded the daily hits limit" instead
+            of CSV data.
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: >-
+                  Comma-separated values with header row. Columns: Date, Open,
+                  High, Low, Close, Volume. Date format is YYYY-MM-DD for daily
+                  and weekly intervals.
+              example: |
+                Date,Open,High,Low,Close,Volume
+                2023-12-29,192.90,193.15,191.72,192.53,42628800
+                2023-12-28,194.14,194.66,193.17,193.58,34049900
+                2023-12-27,192.49,193.50,191.09,193.15,48087700
+        '400':
+          description: Bad request or invalid parameters.
+        '429':
+          description: >-
+            Daily request quota exceeded. The response body may contain
+            "Exceeded the daily hits limit".

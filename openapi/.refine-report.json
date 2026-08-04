@@ -1,0 +1,14 @@
+{
+  "provider": "stooq",
+  "sources": [
+    "stooq-q-api-openapi.yml"
+  ],
+  "outputs": [
+    "stooq-q-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
