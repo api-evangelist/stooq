@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stooq Historical Data Q API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Q",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download historical OHLCV data as CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://stooq.com/q/d/l/",
+            "params": [
+              {
+                "name": "s",
+                "value": "",
+                "type": "query",
+                "description": "Ticker symbol, optionally suffixed with an exchange code. Examples: aapl.us (Apple US), googl.us, btc.v (Bitcoin), gbp.v (GBP/USD), oil (crude oil), spx (S&P 500). Exchange suffixes: .US, .UK, .DE, .JP, .HK, .HU, .V"
+              },
+              {
+                "name": "d1",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the data range in YYYYMMDD format."
+              },
+              {
+                "name": "d2",
+                "value": "",
+                "type": "query",
+                "description": "End date for the data range in YYYYMMDD format."
+              },
+              {
+                "name": "i",
+                "value": "",
+                "type": "query",
+                "description": "Data interval. Options: d (daily), w (weekly), m (monthly), q (quarterly), y (yearly). Intraday intervals also supported: 60 (hourly, ~9 months history), 5 (5-minute, ~1 month history)."
+              },
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "query",
+                "description": "API key obtained from the Stooq website via a CAPTCHA form. Required as of early 2026."
+              }
+            ]
+          },
+          "docs": "Returns a CSV file containing OHLCV (Open, High, Low, Close, Volume) time-series data for the specified ticker symbol and date range. Covers 21,000+ global securities and ETFs, 1,980+ currency pairs, 130+ cryptocurrencies, global indices, commodities, and economic indicators. Daily history extends 30+ years for major instruments; hourly data spans ~9 months; 5-minute data ~1 month."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

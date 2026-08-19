@@ -1,0 +1,266 @@
+{
+  "item": [
+    {
+      "id": "83f1abb0-588c-475a-922c-c90330f71634",
+      "name": "Q",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39f59252-331a-4d6b-abe7-21b5bf13b43f",
+          "name": "Download historical OHLCV data as CSV",
+          "request": {
+            "name": "Download historical OHLCV data as CSV",
+            "description": {
+              "content": "Returns a CSV file containing OHLCV (Open, High, Low, Close, Volume) time-series data for the specified ticker symbol and date range. Covers 21,000+ global securities and ETFs, 1,980+ currency pairs, 130+ cryptocurrencies, global indices, commodities, and economic indicators. Daily history extends 30+ years for major instruments; hourly data spans ~9 months; 5-minute data ~1 month.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "q",
+                "d",
+                "l",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "s",
+                  "value": "<string>",
+                  "description": "(Required) Ticker symbol, optionally suffixed with an exchange code. Examples: aapl.us (Apple US), googl.us, btc.v (Bitcoin), gbp.v (GBP/USD), oil (crude oil), spx (S&P 500). Exchange suffixes: .US, .UK, .DE, .JP, .HK, .HU, .V"
+                },
+                {
+                  "disabled": false,
+                  "key": "d1",
+                  "value": "<string>",
+                  "description": "Start date for the data range in YYYYMMDD format."
+                },
+                {
+                  "disabled": false,
+                  "key": "d2",
+                  "value": "<string>",
+                  "description": "End date for the data range in YYYYMMDD format."
+                },
+                {
+                  "disabled": false,
+                  "key": "i",
+                  "value": "d",
+                  "description": "Data interval. Options: d (daily), w (weekly), m (monthly), q (quarterly), y (yearly). Intraday intervals also supported: 60 (hourly, ~9 months history), 5 (5-minute, ~1 month history)."
+                },
+                {
+                  "disabled": false,
+                  "key": "apikey",
+                  "value": "<string>",
+                  "description": "(Required) API key obtained from the Stooq website via a CAPTCHA form. Required as of early 2026."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ceec9d6-0638-495e-a41e-313a8d4e3ecb",
+              "name": "CSV file with OHLCV data. The response Content-Type is text/csv. The first row is a header line. If the daily quota is exceeded, the body contains the text \"Exceeded the daily hits limit\" instead of CSV data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "q",
+                    "d",
+                    "l",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "s",
+                      "value": "aapl.us"
+                    },
+                    {
+                      "key": "d1",
+                      "value": "20200101"
+                    },
+                    {
+                      "key": "d2",
+                      "value": "20231231"
+                    },
+                    {
+                      "key": "i",
+                      "value": "d"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "your_api_key_here"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "Date,Open,High,Low,Close,Volume\n2023-12-29,192.90,193.15,191.72,192.53,42628800\n2023-12-28,194.14,194.66,193.17,193.58,34049900\n2023-12-27,192.49,193.50,191.09,193.15,48087700\n",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d0c306a-9e9f-4517-be35-602ca0f444cc",
+              "name": "Bad request or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "q",
+                    "d",
+                    "l",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "s",
+                      "value": "aapl.us"
+                    },
+                    {
+                      "key": "d1",
+                      "value": "20200101"
+                    },
+                    {
+                      "key": "d2",
+                      "value": "20231231"
+                    },
+                    {
+                      "key": "i",
+                      "value": "d"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "your_api_key_here"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "596f9f90-6483-4766-baaf-99a3d6835004",
+              "name": "Daily request quota exceeded. The response body may contain \"Exceeded the daily hits limit\".",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "q",
+                    "d",
+                    "l",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "s",
+                      "value": "aapl.us"
+                    },
+                    {
+                      "key": "d1",
+                      "value": "20200101"
+                    },
+                    {
+                      "key": "d2",
+                      "value": "20231231"
+                    },
+                    {
+                      "key": "i",
+                      "value": "d"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "your_api_key_here"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://stooq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a799c939-d825-41e6-a6f0-0b55111a0e63",
+    "name": "Stooq Historical Data Q API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Stooq is a Poland-based financial data platform offering free access to historical and current market data for global equities, indices, currencies, cryptocurrencies, commodities, bonds, and economic indicators. Data is delivered as CSV via a simple REST-style URL interface. An API key (obtained via CAPTCHA on the site) is required. A known daily request quota applies; exceeding it returns an \"Exceeded the daily hits limit\" message.",
+      "type": "text/plain"
+    }
+  }
+}
