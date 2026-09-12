@@ -93,6 +93,8 @@ apis:
   - type: FinOps
     url: finops/stooq-finops.yml
 common:
+  - type: Website
+    url: https://www.stooq.com/
   - type: AgenticAccess
     url: agentic-access/stooq-agentic-access.yml
   - type: DomainSecurity
