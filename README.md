@@ -64,52 +64,135 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Stooq is a Poland-based financial data platform providing free historical and current market
-data for global equities, indices, currencies, cryptocurrencies, commodities, bonds, and
-economic indicators. Data is delivered as CSV via a simple REST-style URL interface.
+Stooq is a Poland-based financial data platform offering free access to historical and current market data for global equities, indices, currencies, cryptocurrencies, commodities, bonds, and economic indicators. Data is delivered as CSV via a simple REST-style URL interface at https://stooq.com/q/d/l/ using query parameters for ticker symbol, date range, and interval. As of early 2026 an API key (obtained via CAPTCHA on the site) is required. A known daily request quota applies; exceeding it returns an "Exceeded the daily hits limit" message. Bulk point-in-time snapshots of the full database (12,000+ securities) are also available as ZIP-compressed CSVs from https://stooq.com/db/h/.
 
-## API
+**Areas:** Fintech · Market Data · Stocks · Indices · Currency · Cryptocurrency · Commodities · Historical Data · Free
 
-The primary endpoint is `https://stooq.com/q/d/l/` with query parameters:
+## Stooq on APIs.io
 
-| Parameter | Description |
-|-----------|-------------|
-| `s` | Ticker symbol with optional exchange suffix (e.g. `AAPL.US`, `VOD.UK`, `BMW.DE`) |
-| `d1` | Start date in YYYYMMDD format |
-| `d2` | End date in YYYYMMDD format |
-| `i` | Interval: `d` daily, `w` weekly, `m` monthly, `q` quarterly, `y` yearly |
-| `apikey` | API key obtained via on-site CAPTCHA (required as of early 2026) |
+Everything profiled for Stooq is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/stooq/](https://apis.io/providers/stooq/)** — or go straight to one of the APIs or properties below.
 
-Response columns: Date, Open, High, Low, Close, Volume.
+### APIs (1)
 
-### Exchange Suffixes
+- [Stooq Q API](https://apis.io/apis/stooq/stooq-q-api/) — The Q API from Stooq — 1 operation(s) for q.
 
-`.US` NYSE/NASDAQ, `.UK` London SE, `.DE` Deutsche Borse, `.JP` Tokyo SE, `.HK` Hong Kong,
-`.HU` Budapest SE. No suffix defaults to Warsaw Stock Exchange (GPW).
+### Published properties
 
-### Bulk Downloads
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Point-in-time database snapshots (12,000+ securities, ZIP-compressed CSV) are available at
-`https://stooq.com/db/h/` for daily, weekly, and monthly frequencies across multiple regions.
+#### Agentic access (1)
 
-## Coverage
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- 21,000+ global securities and ETFs
-- 1,980+ currency pairs
-- 130+ cryptocurrencies
-- Global indices, commodities, bonds, economic indicators
-- Daily history: 30+ years for major instruments
-- Hourly history: ~9 months
-- 5-minute history: ~1 month
+- [Stooq Agentic Access](https://apis.io/agentic-access/stooq/stooq-agentic-access/)
 
-## Rate Limits
+#### JSON Schema (2)
 
-A daily request quota is enforced per API key. The exact limit is not published. Exceeding
-it returns an error message in the response body with HTTP 200. Implement response-body
-checking and local caching to manage quota consumption.
+The data models the API reads and writes.
 
-## Links
+- [Stooq OHLCV Record](https://apis.io/schemas/stooq/stooq-ohlcv-record/)
+- [Stooq Historical Data API Query Parameters](https://apis.io/schemas/stooq/stooq-query-parameters/)
 
-- Portal: https://stooq.com/
-- Bulk Data: https://stooq.com/db/h/
-- API Key: https://stooq.com/q/d/?s=spy.us&get_apikey
+#### Examples (3)
+
+Example requests and responses.
+
+- [Stooq Apple Daily Ohlcv Example](https://apis.io/examples/stooq/stooq-apple-daily-ohlcv-example/)
+- [Stooq Bitcoin Weekly Ohlcv Example](https://apis.io/examples/stooq/stooq-bitcoin-weekly-ohlcv-example/)
+- [Stooq Quota Exceeded Example](https://apis.io/examples/stooq/stooq-quota-exceeded-example/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Stooq Historical Data Q API](https://apis.io/collections/stooq/open-stooq-q-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Stooq — jsonschema rules](https://apis.io/rules/stooq/stooq-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Stooq Domain Security](https://apis.io/security/stooq/stooq-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Stooq Plans Pricing](https://apis.io/plans/stooq/stooq-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Stooq Rate Limits](https://apis.io/rate-limits/stooq/stooq-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Stooq Finops](https://apis.io/finops/stooq/stooq-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.stooq.com/)
+- [Documentation](https://stooq.com/db/h/)
+
+## API Evangelist rating
+
+**Kin Score 28.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.2 |
+| Contract governance | 23.5 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 5.3 |
+
+**Agent readiness 23.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.7** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/stooq/](https://apis.io/providers/stooq/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Stooq: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/stooq/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
